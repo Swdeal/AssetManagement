@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DB.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,5 +18,8 @@ namespace DB.Context
         {
 
         }
+
+
+        public virtual DbSet<EmployeeMain> EmployeeMain { get; set; }
     }
 }

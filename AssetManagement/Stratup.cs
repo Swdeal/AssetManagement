@@ -6,6 +6,12 @@ using Autofac;
 using DB.Context;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
+using AssetManagement.Core.Facade.Interface;
+using AssetManagement.Core.Facade.Implement.Employee;
+using AssetManagement.Core.Service.Interface;
+using AssetManagement.Core.Service.Implement.Employee;
+using AssetManagement.Core.DAO.Interface;
+using AssetManagement.Core.DAO.Implement.Employee;
 
 namespace AssetManagement
 {
@@ -60,7 +66,7 @@ namespace AssetManagement
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Account}/{action=Login}/{id?}");
+                    pattern: "{controller=Login}/{action=Index}/{id?}");
             });
         }
 
@@ -75,7 +81,7 @@ namespace AssetManagement
             Assembly libAssembly = Assembly.Load("Lib");
 
             builder.RegisterAssemblyTypes(mainAssembly)
-             .Where(t => t.BaseType == typeof(BaseControllercs))
+             .Where(t => t.BaseType == typeof(BaseController))
              .PropertiesAutowired();
 
             builder.RegisterAssemblyTypes(coreAssembly)
