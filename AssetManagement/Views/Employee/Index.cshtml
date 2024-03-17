@@ -1,0 +1,119 @@
+﻿@model AssetManagement.Models.Employee.EmployeeQueryModel
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">員工維護</h5>
+    </div>
+    <div class="card-body">
+        <form id="queryForm" asp-controller="Employee" asp-action="Get" method="get" asp-antiforgery="true">
+            <table class="inputTable">
+                <tbody>
+                    <tr>
+                        <td class="w-25 text-right header align-bottom">
+                            <label asp-for="EmployeeId"></label>
+                        </td>
+                        <td class="w-75">
+                            <div class="row">
+                                <div class="col-4">
+                                    <input asp-for="EmployeeId" class="form-control"/>
+                                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="w-25 text-right header align-bottom">
+                            <label asp-for="EmployeeName"></label>
+                        </td>
+                        <td class="w-75">
+                            <div class="row">
+                                <div class="col-4">
+                                    <input asp-for="EmployeeName" class="form-control" />
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-md-3">
+                    <a class="btn btn-outline-secondary" href='@Url.Action("Index","Employee")'>重設</a>
+                    <button id="queryBtn" class="btn btn-primary" type="button">查詢</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3" style="padding-left:15px">
+                    <a class="btn btn-primary" href='@Url.Action("Add","Employee")'>新增</a>
+                </div>
+            </div>
+        </form>
+        <table id="searchTable" class="gridTable text-center">
+            <thead>
+                <tr style="background-color:#ffe6b9">
+                    <th colspan="7">業務員資料</th>
+                </tr>
+                <tr style="background-color:#ffe6b9">
+                    <th>員工ID</th>
+                    <th>員工名稱</th>
+                    <th>員工信箱</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+
+    <script>
+
+        // Variable Define
+        const getDataUrl = '@Url.Action("Get","Employee")'
+        const editDataUrl = '@Url.Action("Edit","Employee")'
+        const deleteDataUrl = '@Url.Action("Delete","Employee")'
+
+
+        // Init
+        $(() => {
+            $("#queryBtn").click(function() {
+                var table = $("#searchTable")
+
+                // 创建新的行（<tr>）
+                var newRow = document.createElement("tr");
+
+                // 创建新的单元格（<td>）
+                var cell1 = document.createElement("td");
+                var cell2 = document.createElement("td");
+                var cell3 = document.createElement("td");
+
+                $.ajax({
+                    url: getDataUrl,
+                    type: "GET",
+                    dataType: "json",
+                    data: {
+                        employeeId: @Model?.EmployeeId,
+                        employeeName: @Model?.EmployeeName
+                    }
+                }).done(function(response) {
+                    var returnData = {};
+                        var result = response["result"];
+                        if (result.IsSuccess) {
+                            cell1.textContent = result.data.employeeID;
+                            cell2.textContent = result.data.employeeName;
+                            cell3.textContent = result.data.employeeEmail;
+                        }
+                })
+
+
+                    // 将单元格添加到新行中
+                newRow.appendChild(cell1);
+                newRow.appendChild(cell2);
+                newRow.appendChild(cell3);
+
+                // 将新行添加到表格的 tbody 中（如果有 tbody 的话，否则添加到表格中）
+                table.append(newRow);
+            })
+        })
+
+    </script>
+}

@@ -17,5 +17,25 @@ namespace Lib.Constant
         /// 新增失敗
         /// </summary>
         public const string ADD_FAIL = "新增失敗";
+
+        /// <summary>
+        /// 更新成功
+        /// </summary>
+        public const string EDIT_SUCCESS = "更新成功";
+
+        /// <summary>
+        /// 更新失敗
+        /// </summary>
+        public const string EDIT_FAIL = "更新失敗";
+
+        /// <summary>
+        /// 刪除成功
+        /// </summary>
+        public const string DELETE_SUCCESS = "刪除成功";
+
+        /// <summary>
+        /// 刪除失敗
+        /// </summary>
+        public const string DELETE_FAIL = "刪除失敗";
     }
 }

@@ -23,6 +23,20 @@ namespace AssetManagement.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 取得員工清單
+        /// </summary>
+        /// <param name="queryModel">查詢條件</param>
+        /// <returns>JSON</returns>
+        [HttpGet]
+        public JsonResult Get(EmployeeQueryModel queryModel)
+        {
+            EmployeeQueryBO queryBO = ConvertUtil.ToObject<EmployeeQueryBO>(queryModel);
+            QueryResult<List<EmployeeBO>> queryResult = _employeeFacade.GetEmployeeList(queryBO);
+            return Json(new { queryResult });
+        }
+
+
         public IActionResult Add()
         {
             return View();
