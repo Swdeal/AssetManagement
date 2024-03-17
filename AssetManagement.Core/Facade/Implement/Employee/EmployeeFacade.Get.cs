@@ -10,6 +10,11 @@ namespace AssetManagement.Core.Facade.Implement.Employee
 {
     public sealed partial class EmployeeFacade : BaseFacade, IEmployeeFacade
     {
-        public IEmployeeService _employeeService { get; set; }
+        private readonly IEmployeeService _employeeService;
+
+        public EmployeeFacade (IEmployeeService employeeService)
+        {
+            _employeeService = employeeService;
+        }
     }
 }

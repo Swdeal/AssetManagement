@@ -38,6 +38,13 @@ namespace AssetManagement
             services.AddSession(x => {
                 x.IdleTimeout = TimeSpan.FromMinutes(30);
             });
+
+            services.AddMvc(x =>
+            {
+
+            })
+            // 這行才能 propertyInjection
+            .AddControllersAsServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

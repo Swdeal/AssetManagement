@@ -10,6 +10,11 @@ namespace AssetManagement.Core.Service.Implement.Employee
 {
     public sealed partial class EmployeeService : BaseService, IEmployeeService
     {
-        public IEmployeeDAO _employeeDAO { get; set; }
+        private readonly IEmployeeDAO _employeeDAO;
+
+        public EmployeeService (IEmployeeDAO employeeDAO)
+        {
+            _employeeDAO = employeeDAO;
+        }
     }
 }

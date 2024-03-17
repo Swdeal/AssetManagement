@@ -11,7 +11,12 @@ namespace AssetManagement.Controllers
 {
     public class EmployeeController : BaseController
     {
-        public IEmployeeFacade _employeeFacade { get; set; }
+        private readonly IEmployeeFacade _employeeFacade;
+
+        public EmployeeController(IEmployeeFacade employeeFacade)
+        {
+            _employeeFacade = employeeFacade;
+        }
 
         public IActionResult Index()
         {
