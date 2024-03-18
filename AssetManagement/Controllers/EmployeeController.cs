@@ -66,5 +66,11 @@ namespace AssetManagement.Controllers
 
             return View(model);
         }
+
+
+        public IActionResult Edit(string employeeGuid)
+        {
+            return View();
+        }
     }
 }

@@ -57,6 +57,7 @@
                     <th>員工ID</th>
                     <th>員工名稱</th>
                     <th>員工信箱</th>
+                    <th>功能</th>
                 </tr>
             </thead>
         </table>
@@ -73,45 +74,60 @@
         const deleteDataUrl = '@Url.Action("Delete","Employee")'
 
 
+        // Function Define
+        function getFormData($form, indexed_array) {
+            var unindexed_array = $form.serializeArray();
+            indexed_array = indexed_array || {};
+            $.map(unindexed_array, function (n, i) {
+                indexed_array[n['name']] = n['value'];
+            });
+            $form.find("input:checkbox").each(function () {
+                indexed_array[this.name] = this.checked;
+            });
+            return indexed_array;
+        }
+
         // Init
         $(() => {
             $("#queryBtn").click(function() {
                 var table = $("#searchTable")
 
-                // 创建新的行（<tr>）
                 var newRow = document.createElement("tr");
 
-                // 创建新的单元格（<td>）
                 var cell1 = document.createElement("td");
                 var cell2 = document.createElement("td");
                 var cell3 = document.createElement("td");
+                var cell4 = document.createElement("td");
 
+                let model = getFormData($('#queryForm'))
                 $.ajax({
                     url: getDataUrl,
                     type: "GET",
                     dataType: "json",
-                    data: {
-                        employeeId: @Model?.EmployeeId,
-                        employeeName: @Model?.EmployeeName
-                    }
+                    data: model
                 }).done(function(response) {
                     var returnData = {};
-                        var result = response["result"];
-                        if (result.IsSuccess) {
-                            cell1.textContent = result.data.employeeID;
-                            cell2.textContent = result.data.employeeName;
-                            cell3.textContent = result.data.employeeEmail;
+                        var result = response["queryResult"];
+                        if (result.isSuccess) {
+                            for (var i = 0; i < result.data.length ; i++){
+                                cell1.textContent = result.data[i].employeeID;
+                                cell2.textContent = result.data[i].employeeName;
+                                cell3.textContent = result.data[i].employeeEmail;
+
+
+                                var editLink = document.createElement("a");
+                                editLink.setAttribute("href", editDataUrl + "?employeeGuid=" + result.data[i].employeeUID);
+                                editLink.setAttribute("class", "btn btn-outline-secondary");
+                                editLink.textContent = "編輯";
+
+                                newRow.appendChild(cell1);
+                                newRow.appendChild(cell2);
+                                newRow.appendChild(cell3);
+                                newRow.appendChild(editLink);
+                                table.append(newRow);
+                            }
                         }
                 })
-
-
-                    // 将单元格添加到新行中
-                newRow.appendChild(cell1);
-                newRow.appendChild(cell2);
-                newRow.appendChild(cell3);
-
-                // 将新行添加到表格的 tbody 中（如果有 tbody 的话，否则添加到表格中）
-                table.append(newRow);
             })
         })
 
