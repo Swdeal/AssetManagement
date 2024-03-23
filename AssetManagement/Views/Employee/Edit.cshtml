@@ -1,6 +1,7 @@
 ﻿@model AssetManagement.Models.Employee.EmployeeViewModel
 
 <form id="addForm" asp-controller="Employee" asp-action="Edit" method="post" asp-antiforgery="true">
+    <input hidden asp-for="EmployeeUID" />
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">員工維護</h5>
@@ -63,7 +64,7 @@
                 </tbody>
             </table>
             <div class="row justify-content-center">
-                <a class="btn btn-outline-secondary m-r-5" href='@Url.Action("Edit","Employee")'>重設</a>
+                <a class="btn btn-outline-secondary m-r-5" href='@Url.Action("Edit","Employee" , new { employeeGuid = Model.EmployeeUID })'>重設</a>
                 <button id="saveBtn" class="btn btn-primary m-r-5" type="button">儲存</button>
             </div>
         </div>

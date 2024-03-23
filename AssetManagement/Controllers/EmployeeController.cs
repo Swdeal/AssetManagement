@@ -36,7 +36,10 @@ namespace AssetManagement.Controllers
             return Json(new { queryResult });
         }
 
-
+        /// <summary>
+        /// 新增員工
+        /// </summary>
+        /// <returns></returns>
         public IActionResult Add()
         {
             return View();
@@ -67,10 +70,52 @@ namespace AssetManagement.Controllers
             return View(model);
         }
 
-
+        /// <summary>
+        /// 編輯員工
+        /// </summary>
+        /// <param name="employeeGuid">員工GUID</param>
+        /// <returns></returns>
         public IActionResult Edit(string employeeGuid)
         {
-            return View();
+            EmployeeViewModel model = new EmployeeViewModel();
+            QueryResult<EmployeeBO> result = _employeeFacade.GetEmployee(employeeGuid);
+            if (result.IsSuccess)
+            {
+                model = ConvertUtil.ToObject<EmployeeViewModel>(result.Data);
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EmployeeViewModel model)
+        {
+            EmployeeBO employeeBO = ConvertUtil.ToObject<EmployeeBO>(model);
+            employeeBO.ModifyUser = Constant.DEFAULT_USER;
+            employeeBO.ModifyTime = DateTimeOffset.Now;
+
+            ExecuteResult result = _employeeFacade.Edit(employeeBO);
+
+            if (result.IsSuccess)
+            {
+                ViewData["SuccessMessage"] = result.Message;
+            }
+            else
+            {
+                ViewData["FailMessage"] = result.Message;
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        /// <summary>
+        /// 刪除員工
+        /// </summary>
+        /// <param name="employeeGuid">員工GUID</param>
+        /// <returns>JSON</returns>
+        public JsonResult Delete(string employeeGuid)
+        {
+            ExecuteResult result = _employeeFacade.Delete(employeeGuid);
+            return Json(new { result });
         }
     }
 }

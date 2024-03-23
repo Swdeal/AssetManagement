@@ -120,10 +120,16 @@
                                 editLink.setAttribute("class", "btn btn-outline-secondary");
                                 editLink.textContent = "編輯";
 
+                                var deleteLink = document.createElement("a");
+                                deleteLink.setAttribute("href", deleteDataUrl + "?employeeGuid=" + result.data[i].employeeUID);
+                                deleteLink.setAttribute("class", "btn btn-outline-secondary");
+                                deleteLink.textContent = "刪除";
+
                                 newRow.appendChild(cell1);
                                 newRow.appendChild(cell2);
                                 newRow.appendChild(cell3);
                                 newRow.appendChild(editLink);
+                                newRow.appendChild(deleteLink);
                                 table.append(newRow);
                             }
                         }

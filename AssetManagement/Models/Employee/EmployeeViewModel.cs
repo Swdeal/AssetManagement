@@ -4,6 +4,12 @@ namespace AssetManagement.Models.Employee
 {
     public class EmployeeViewModel
     {
+
+        /// <summary>
+        /// GUID
+        /// </summary>
+        public string? EmployeeUID { get; set; }
+
         /// <summary>
         /// 員工編號
         /// </summary>
