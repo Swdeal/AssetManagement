@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetManagement", "AssetManagement\AssetManagement.csproj", "{2885C759-CB62-42DB-880E-FACC5DCD2BD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetManagement", "AssetManagement\AssetManagement.csproj", "{2885C759-CB62-42DB-880E-FACC5DCD2BD0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9F6BA825-A69F-4DB5-8DD6-37E94570FB19} = {9F6BA825-A69F-4DB5-8DD6-37E94570FB19}
 		{77EA085A-DCA1-4BBB-8A3D-1A93AEC49395} = {77EA085A-DCA1-4BBB-8A3D-1A93AEC49395}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetManagement.Core", "AssetManagement.Core\AssetManagement.Core.csproj", "{77EA085A-DCA1-4BBB-8A3D-1A93AEC49395}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AssetManagement.Core", "AssetManagement.Core\AssetManagement.Core.csproj", "{77EA085A-DCA1-4BBB-8A3D-1A93AEC49395}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9F6BA825-A69F-4DB5-8DD6-37E94570FB19} = {9F6BA825-A69F-4DB5-8DD6-37E94570FB19}
 		{04FEC8FE-7D0E-470E-8819-8BCDBE9CE004} = {04FEC8FE-7D0E-470E-8819-8BCDBE9CE004}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib", "Lib\Lib.csproj", "{04FEC8FE-7D0E-470E-8819-8BCDBE9CE004}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lib", "Lib\Lib.csproj", "{04FEC8FE-7D0E-470E-8819-8BCDBE9CE004}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DB", "DB\DB.csproj", "{9F6BA825-A69F-4DB5-8DD6-37E94570FB19}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DB", "DB\DB.csproj", "{9F6BA825-A69F-4DB5-8DD6-37E94570FB19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AssetManagement.CoreTests", "AssetManagement.CoreTests1\AssetManagement.CoreTests.csproj", "{9C38036C-48AA-41E6-81A2-9D4BD7333BDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,10 @@ Global
 		{9F6BA825-A69F-4DB5-8DD6-37E94570FB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F6BA825-A69F-4DB5-8DD6-37E94570FB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F6BA825-A69F-4DB5-8DD6-37E94570FB19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C38036C-48AA-41E6-81A2-9D4BD7333BDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C38036C-48AA-41E6-81A2-9D4BD7333BDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C38036C-48AA-41E6-81A2-9D4BD7333BDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C38036C-48AA-41E6-81A2-9D4BD7333BDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
